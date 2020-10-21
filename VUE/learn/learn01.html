@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content=" ">
+    <title>Document</title>
+    <style type="text/css">
+        *{margin: 0;padding: 0;}
+        a{text-decoration: none;}
+        ul,li{list-style: none;}
+        body{font-size: 14px;font-family: "微软雅黑";}
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        {{message}}
+        <div>{{aaa}}</div>
+    </div>
+
+
+    <script type="text/javascript" src="js/vue.js"></script>
+    <script type="text/javascript">
+        //let(变量)const(常量)
+        //原生js:命令式编程
+        //vue:声明式编程
+            const app=new Vue({
+                el:"#app",//挂载要管理的元素
+                data:{//定义数据
+                    message:"Hello World!",
+                    aaa:"sadasd"
+                }
+            })
+    </script>
+</body>
+</html>

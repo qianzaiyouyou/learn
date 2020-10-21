@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content=" ">
+    <title>Document</title>
+    <style type="text/css">
+        *{margin: 0;padding: 0;}
+        a{text-decoration: none;}
+        ul,li{list-style: none;}
+        body{font-size: 14px;font-family: "微软雅黑";}
+        .reds{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+   <button>按钮1</button>
+   <button>按钮2</button>
+   <button>按钮3</button>
+   <button>按钮4</button>
+
+    <script src="../js/vue.js"></script>
+    <script type="text/javascript">
+   //一旦给const修饰的标识符被赋值以后，不能修改
+   //在使用const定义标识符，必须进行赋值
+   //常量的含义是指向的对象不能修改，但是可以改变对象内部的属性
+
+    const obj={
+        name: 'a',
+        age: 18,
+        height: 1.88,
+    }
+    console.log(obj);
+    obj.name='b';
+    obj.age=40;
+    obj.height=1.70;
+    console.log(obj);
+    </script>
+</body>
+</html>

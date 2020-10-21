@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content=" ">
+    <title>Document</title>
+    <style type="text/css">
+        *{margin: 0;padding: 0;}
+        a{text-decoration: none;}
+        ul,li{list-style: none;}
+        body{font-size: 14px;font-family: "微软雅黑";}
+        .reds{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+   <button>按钮1</button>
+   <button>按钮2</button>
+   <button>按钮3</button>
+   <button>按钮4</button>
+
+    <script src="../js/vue.js"></script>
+    <script type="text/javascript">
+        //ES5中的var是没有块级作用域的
+        //ES6中的let是有块级作用域的
+        //1.变量作用域: 变量在什么范围内是可用的·
+        //
+        //闭包
+        //由于var没有块级作用域，所以四个onclick事件共用一个i,i一改一改全改了。而let有块级作用域，每一个onclick事件都有自己的i,所以没问题。可以理解为var是四个人穿一条裤子，let是四个人四条裤子
+        // var buttons=document.getElementsByTagName("button");
+        // for(var i=0;i<buttons.length;i++){
+        //     (function(i){
+        //          buttons[i].onclick=function(){
+        //             console.log(i+"号按钮被点击");
+        //         }
+        //     })(i);
+
+        // }
+
+        const buttons=document.getElementsByTagName("button");
+        for(let i=0;i<buttons.length;i++){
+            (function(i){
+                 buttons[i].onclick=function(){
+                    console.log(i+"号按钮被点击");
+                }
+            })(i);
+
+        }
+    </script>
+</body>
+</html>

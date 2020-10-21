@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content=" ">
+    <title>Document</title>
+    <style type="text/css">
+        *{margin: 0;padding: 0;}
+        a{text-decoration: none;}
+        ul,li{list-style: none;}
+        body{font-size: 14px;font-family: "微软雅黑";}
+    </style>
+</head>
+<body>
+
+    <!-- 父组件模板 -->
+    <div id="app">
+        <h2>我是cpn组件</h2>
+        <cpn></cpn>
+
+
+    </div>
+    <!-- 子组件模板 -->
+    <template id="cpn">
+         <div>
+            <ccpn></ccpn>
+        </div>
+    </template>
+
+        <template id="ccpn">
+         <div>
+            <h2>我是子组件</h2>
+            <button @click="btnClick()">按钮</button>
+        </div>
+    </template>
+
+
+    <script src="../js/vue.js"></script>
+    <script type="text/javascript">
+
+    //root 组件
+            const app=new Vue({
+                el:"#app",
+                data:{
+                    message: "aaa"
+                },
+                methods: {
+
+                },
+                components: {
+                    cpn: {
+                        template: "#cpn",
+                        data() {
+                            return {
+                                name: "我是cpn组件的name"
+                            }
+                        },
+                        methods: {
+
+                        },
+                        components: {
+                            ccpn: {
+                                template: "#ccpn",
+                                 methods: {
+                                    btnClick(){
+                                        //1.访问父组件$parent
+                                        console.log(this.$parent);
+                                        console.log(this.$parent.name);
+                                        //2.访问根组件$root
+                                        console.log(this.$root);
+                                        console.log(this.$root.message);
+                                    }
+                                },
+                            }
+                        }
+                    }
+                },
+
+            })
+    </script>
+</body>
+</html>

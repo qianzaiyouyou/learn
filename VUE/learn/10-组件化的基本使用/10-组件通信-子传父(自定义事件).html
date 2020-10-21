@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content=" ">
+    <title>Document</title>
+    <style type="text/css">
+        *{margin: 0;padding: 0;}
+        a{text-decoration: none;}
+        ul,li{list-style: none;}
+        body{font-size: 14px;font-family: "微软雅黑";}
+    </style>
+</head>
+<body>
+
+    <!-- 父组件模板 -->
+    <div id="app">
+        <!-- 组件实例对象 -->
+        <!--
+        v-bind用来绑定属性 语法糖为:
+        v-on用来绑定事件(event)   语法糖为$
+         -->
+            <!--3.用v-on接收itemclicka事件,并将其传递到cpnCLick函数上(自定义事件传出)  -->
+        <cpn @itemclick="cpnCLick"></cpn>
+    </div>
+    <!-- 子组件模板 -->
+    <template id="cpn">
+         <div>                              <!-- 1.点击事件产生，将item传入btnClick函数     -->
+            <button v-for="item in categonies" @click="btnClick(item)">{{item.name}}</button>
+        </div>
+    </template>
+
+
+    <script src="../js/vue.js"></script>
+    <script type="text/javascript">
+    //1.子组件
+    const cpn = {
+        template: '#cpn',
+        //props:['cmovies','cmessage'],
+        props:{
+        },
+        data(){
+            return {
+                categonies: [
+                        {id: "aa",name: "热门推荐"},
+                        {id: "bb",name: "手机数码"},
+                        {id: "cc",name: "当季衣物"},
+                        {id: "dd",name: "零食推荐"},
+                ]
+            }
+        },
+        methods:{
+            btnClick(item){//子传父
+                //2.发射了一个事件,创建了itemclick事件，并将item传了出去:即自定义事件($emit)
+                this.$emit("itemclick",item)
+                //console.log(item.id);
+            }
+        }
+
+    }
+
+    //root 组件
+            const app=new Vue({
+                el:"#app",
+                data:{
+
+                    data(){
+                        return {
+
+                        }
+                    }
+                },
+                components: {
+                    cpn
+                },
+                methods:{
+                    cpnCLick(item){
+                        //4.传入item,输出item
+                        console.log("cpnCLick",item);
+                    }
+                }
+            })
+    </script>
+</body>
+</html>

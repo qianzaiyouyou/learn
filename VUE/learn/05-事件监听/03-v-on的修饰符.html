@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content=" ">
+    <title>Document</title>
+    <style type="text/css">
+        *{margin: 0;padding: 0;}
+        a{text-decoration: none;}
+        ul,li{list-style: none;}
+        body{font-size: 14px;font-family: "微软雅黑";}
+    </style>
+</head>
+<body>
+
+    <div id="app">
+
+        <!--1./.stop/修饰符的使用 .stop阻止冒泡 -->
+        <div @click="divClick">
+            11111111
+
+            <button @click.stop="btnClick">按钮</button>
+        </div>
+
+
+        <!--2./.prevent/修饰符的使用 .阻止默认事件 -->
+        <form action="baidu">
+            <input type="submit" value="提交" @click.prevent="submitClick">
+        </form>
+
+        <!--3./.prevent/监听某个键盘的键帽 -->
+        <input type="text" @keyup.enter="Keyup">
+
+         <!--4./.native/在组件中使用 -->
+         <cpn @click.native="cpnclick">123</cpn>
+
+        <!--5./.once/修饰符的使用,只能使用一次-->
+        <button @click.once="clickOnce">once</button>
+
+
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script type="text/javascript">
+            const app=new Vue({
+                el:"#app",
+                data:{
+                    message:0,
+                },
+                methods:{
+
+                    divClick(){
+                        console.log("divClick");
+                    },
+                    btnClick(){
+                        console.log("btnClick"+"123");
+                    },
+                    submitClick(){
+                        console.log("submitClick");
+                    },
+                    Keyup(){
+                        console.log("keyup");
+                    },
+                    cpnclick(){
+
+                    },
+                    clickOnce(){
+                        console.log("once");
+                    }
+                }
+
+            })
+    </script>
+</body>
+</html>

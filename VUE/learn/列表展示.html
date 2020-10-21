@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content=" ">
+    <title>Document</title>
+    <style type="text/css">
+        *{margin: 0;padding: 0;}
+        a{text-decoration: none;}
+        ul,li{list-style: none;}
+        body{font-size: 14px;font-family: "微软雅黑";}
+    </style>
+</head>
+<body>
+
+    <div id="app">
+    {{message}}
+    <div>
+    <ul>
+        <li v-for="item in movies">{{item}}</li>
+    </ul>
+    {{movies}}</div>
+    </div>
+
+    <script src="js/vue.js"></script>
+    <script type="text/javascript">
+    const app=new Vue({
+        el:"#app",
+        data:{
+            message:"sad",
+            movies:['1','2','3','4','5']
+        }
+    })
+    </script>
+</body>
+</html>

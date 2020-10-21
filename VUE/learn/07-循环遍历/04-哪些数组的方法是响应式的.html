@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content=" ">
+    <title>Document</title>
+    <style type="text/css">
+        *{margin: 0;padding: 0;}
+        a{text-decoration: none;}
+        ul,li{list-style: none;}
+        body{font-size: 14px;font-family: "微软雅黑";}
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <!-- splice split push-->
+        <ul>
+            <li v-for="item in lets">{{item}}</li>
+        </ul>
+        <button @click="btnCLick()">111</button>
+
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script type="text/javascript">
+            const app=new Vue({
+                el:"#app",
+                data:{
+                    lets:['A','B','C','D','E']
+                },
+                methods:{
+                    //1.push在数组最后添加元素
+                    //this.lets.push("asa");
+
+                    //2.通索引值修改数组中的元素(不是响应式的)
+                    //this.lets[0]='bbbb';
+
+                    //Vue方法set(要修改的对象，索引值,修改后的值)
+                    btnCLick(){
+                        Vue.set(this.lets,0,'vbvb');
+                    }
+
+
+                    //join()
+                    // pop()删除数组中最后一个元素
+                    // shift()删除数组中的第一个元素
+                    // unshift()在数组最前面添加元素
+                    // sort()//排序
+                    // reverse()//数组元素反转
+                    // concat()
+                    // slice()
+                    // splice()可传三个参数:插入到数组的哪个位置/在当前位置后面删除几个元素/替换元素的内容
+                    // indexOf()和 lastIndexOf() （ES5新增）
+                    // forEach() （ES5新增）
+                    // map() （ES5新增）
+                    // filter() （ES5新增）
+                    // every() （ES5新增）
+                    // some() （ES5新增）
+                }
+            })
+    </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content=" ">
+    <title>Document</title>
+    <style type="text/css">
+        *{margin: 0;padding: 0;}
+        a{text-decoration: none;}
+        ul,li{list-style: none;}
+        body{font-size: 14px;font-family: "微软雅黑";}
+        .reds{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+
+        <ul>
+            <h2>总价格={{fullName}}</h2>
+            <h2>总价格={{fullNames}}</h2>
+        </ul>
+
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script type="text/javascript">
+            const app=new Vue({
+                el:"#app",
+                data:{
+                    fristName:'111',
+                    lastName:'222'
+                },
+
+                computed:{
+                    //计算属性一般是没有set方法,只读属性;
+                    fullName:{
+                        set:function(newValue){
+                            console.log("====",newValue);
+                            let nameChange=newValue.split(" ");
+                            this.fristName=nameChange[0];
+                            this.lastName=nameChange[1];
+                        },
+                        get: function(){
+                            return this.fristName+'  '+this.lastName;
+                        }
+                    },
+                    fullNames: function(){
+                        return this.fristName+'  '+this.lastName;
+                    }
+
+                }
+
+            })
+    </script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content=" ">
+    <title>Document</title>
+    <style type="text/css">
+        *{margin: 0;padding: 0;}
+        a{text-decoration: none;}
+        ul,li{list-style: none;}
+        body{font-size: 14px;font-family: "微软雅黑";}
+    </style>
+</head>
+<body>
+
+    <!-- 父组件模板 -->
+    <div id="app">
+        <cpn
+        :num1s="num1" :num2s="num2"
+        @num1s_change="num1Change" @num2s_change="num2Change"
+        ></cpn>
+    </div>
+    <!-- 子组件模板 -->
+    <template id="cpn">
+         <div>
+            <h2>props:{{num1s}}</h2>
+            <h2>data:{{dnumber1}}</h2>
+            <!-- <input type="text" v-model="dnumber1"> -->
+            <input type="number" v-bind:value="dnumber1" @input="numInput1">
+            <h2>props:{{num2s}}</h2>
+            <h2>data:{{dnumber2}}</h2>
+            <!-- <input type="text" v-model="dnumber2"> -->
+            <input type="number" :value="dnumber2" @input="numInput2($event)">
+        </div>
+    </template>
+
+
+    <script src="../js/vue.js"></script>
+    <script type="text/javascript">
+
+    //root 组件
+            const app=new Vue({
+                el:"#app",
+                data:{
+                    num1: 1,
+                    num2: 0
+                },
+                methods: {
+                    num1Change (value) {
+                        //parseFloat方法:将数据类型String字符串转换为number数字
+                        this.num1=parseFloat(value);
+                    },
+                    num2Change (value) {
+                        this.num2=parseFloat(value);
+                    },
+                },
+                components: {
+                    cpn: {
+                        template: "#cpn",
+                        props: {
+                            num1s: Number,
+                            num2s: Number
+                        },
+                        data() {
+                            return {
+                                dnumber1: this.num1s,
+                                dnumber2: this.num2s
+                            }
+                        },
+                        methods: {
+                            // numInput(event,dates){
+                            //     this.dates = event.target.value;
+                            // }
+                            numInput1(event){
+                                this.dnumber1 = event.target.value;
+                                this.$emit('num1s_change',this.dnumber1);
+
+                                //num2乘100
+                                this.dnumber2 = this.dnumber1*100;
+                                this.$emit('num1s_change',this.dnumber1);
+
+
+                            },
+                            numInput2(event){
+                                this.dnumber2 = event.target.value;
+                                this.$emit('num2s_change',this.dnumber2);
+
+                                //num1除100
+                                this.dnumber1 = this.dnumber2/100;
+                                this.$emit('num1s_change',this.dnumber1);
+                            }
+                        }
+                    }
+                },
+
+            })
+    </script>
+</body>
+</html>

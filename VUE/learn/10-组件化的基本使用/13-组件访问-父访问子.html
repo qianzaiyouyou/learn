@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content=" ">
+    <title>Document</title>
+    <style type="text/css">
+        *{margin: 0;padding: 0;}
+        a{text-decoration: none;}
+        ul,li{list-style: none;}
+        body{font-size: 14px;font-family: "微软雅黑";}
+    </style>
+</head>
+<body>
+
+    <!-- 父组件模板 -->
+    <div id="app">
+        <cpn></cpn>
+        <cpn></cpn>
+        <cpn ref="aaa"></cpn>
+        <button @click="btnClick()">按钮</button>
+    </div>
+    <!-- 子组件模板 -->
+    <template id="cpn">
+         <div>
+            <h2>我是子组件</h2>
+        </div>
+    </template>
+
+
+    <script src="../js/vue.js"></script>
+    <script type="text/javascript">
+
+    //root 组件
+            const app=new Vue({
+                el:"#app",
+                data:{
+                    message: "aaa"
+                },
+                methods: {
+                    btnClick(){
+                        //1.$children
+                        console.log(this.$children);
+
+                        // for(let i of this.$children){
+                        //     console.log(i.name);
+                        //     this.$children[0].showMnessage();
+                        // }
+
+                        //2.$ref =>对象类型，默认是一个空的对象 ref='bbb'
+                        console.log(this.$refs.aaa.name);
+
+                    }
+                },
+                components: {
+                    cpn: {
+                        template: "#cpn",
+                        data() {
+                            return {
+                                name: "我是子组件的name"
+                            }
+                        },
+                        methods: {
+                            showMnessage(){
+                                console.log("showMnessage")
+                            }
+                        }
+                    }
+                },
+
+            })
+    </script>
+</body>
+</html>

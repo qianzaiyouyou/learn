@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content=" ">
+    <title>Document</title>
+    <style type="text/css">
+        *{margin: 0;padding: 0;}
+        a{text-decoration: none;}
+        ul,li{list-style: none;}
+        body{font-size: 14px;font-family: "微软雅黑";}
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <h2>{{message}}</h2>
+        <!-- 1.事件调用的方法没有参数 -->
+        <button @click="btnClick()">按钮1</button>
+        <button @click="btnClick">按钮2</button>
+
+        <!-- 2.在事件定义时，写函数时省略了小括号，但是方法本身是需要一个参数的 -->
+        <!-- 3.方法定义时，我们需要event事件对象作为参数传入到方法 -->
+        <!-- 在调用方式时，如何手动的获取到浏览器的参数的event对象: $event -->
+        <button @click="btn2Click(123)">按钮1</button>
+        <button @click="btn2Click">按钮2</button>
+
+                <button @click="btn3Click('asda',$event)">按钮2</button>
+
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script type="text/javascript">
+            const app=new Vue({
+                el:"#app",
+                data:{
+                    message:0,
+                },
+                methods:{
+                   btnClick(){
+                        console.log("btnClick");
+                   },
+                    btn2Click(abc){
+                        console.log('----',abc);
+                    },
+                    btn3Click(abc,event){
+                        console.log('+++',abc,event);
+                    }
+
+                }
+            })
+    </script>
+</body>
+</html>

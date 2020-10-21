@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content=" ">
+    <title>Document</title>
+    <style type="text/css">
+        *{margin: 0;padding: 0;}
+        a{text-decoration: none;}
+        ul,li{list-style: none;}
+        body{font-size: 14px;font-family: "微软雅黑";}
+        .active{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <!-- <h2 :class="active">{{message}}</h2> -->
+<!--         <h2 :class="{active: a1,active2: a2}">{{message}}</h2> -->
+        <h2 :class="getClasses()">{{message}}</h2>
+        <button @click="change()">按钮</button>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script type="text/javascript">
+            const app=new Vue({
+                el:"#app",
+                data:{
+                    message:'aaa',
+                    active: 'active',
+                    a1: true,
+                    a2: false
+                },
+                methods:{
+                    change:function(){
+                        // if(this.a1==true){
+                        //     this.a1=false;
+                        //     this.a2=true
+                        // }else{
+                        //     this.a2=false;
+                        //     this.a1=true;
+                        // }
+                        this.a1=!this.a1;
+                    },
+                    getClasses:function(){
+                        return {active: this.a1,active2: this.a2};
+                    }
+                }
+
+            })
+    </script>
+</body>
+</html>

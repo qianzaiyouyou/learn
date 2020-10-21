@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content=" ">
+    <title>Document</title>
+    <style type="text/css">
+        *{margin: 0;padding: 0;}
+        a{text-decoration: none;}
+        ul,li{list-style: none;}
+        body{font-size: 14px;font-family: "微软雅黑";}
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <h2>{{message}}</h2>
+        <cpn1></cpn1>
+        <cpn2></cpn2>
+
+    </div>
+
+    <!-- 1.script标签，注意类型必须是 text/x-template -->
+    <!-- <script type="text/x-template" id="cpn">
+        <div>
+            <h2>我是内容</h2>
+            <p>11111111</p>
+
+            <p>M222222222</p>
+        </div>
+    </script> -->
+
+    <!-- 2.template标签 -->
+    <template id="cpn">
+        <div>
+            <h2>我是内容</h2>
+            <p>11111111</p>
+
+            <p>M222222222</p>
+        </div>
+    </template>
+
+
+    <script src="../js/vue.js"></script>
+    <script type="text/javascript">
+    //1.组件语法糖
+    Vue.component('cpn1' , {
+        template:`#cpn`
+    })
+
+    //root 组件
+            const app=new Vue({
+                el:"#app",
+                data:{
+                    message:'aaa'
+                },
+                //(注册局部组件语法糖)
+                components: {
+
+                }
+            })
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content=" ">
+    <title>Document</title>
+    <style type="text/css">
+        *{margin: 0;padding: 0;}
+        a{text-decoration: none;}
+        ul,li{list-style: none;}
+        body{font-size: 14px;font-family: "微软雅黑";}
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <h2>{{message}}</h2>
+        <!-- <button v-on:click="message++">+</button>
+        <button v-on:click="message--">-</button> -->
+
+        <!-- <button v-on:click="add()">+</button>
+        <button v-on:click="back()">-</button> -->
+        <button @click="add()">+</button>
+        <button @click="back()">-</button>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script type="text/javascript">
+            const app=new Vue({
+                el:"#app",
+                data:{
+                    message:0,
+                },
+                methods:{
+                    add(){
+                        this.message++;
+                    },
+                    back(){
+                        this.message--;
+                    }
+
+                }
+            })
+    </script>
+</body>
+</html>

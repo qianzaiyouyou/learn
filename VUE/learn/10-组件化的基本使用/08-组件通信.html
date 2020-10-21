@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content=" ">
+    <title>Document</title>
+    <style type="text/css">
+        *{margin: 0;padding: 0;}
+        a{text-decoration: none;}
+        ul,li{list-style: none;}
+        body{font-size: 14px;font-family: "微软雅黑";}
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <!-- 组件实例对象 -->
+        <cpn :cmovies="movies" :cmessage="message"></cpn>
+        <cpn></cpn>
+    </div>
+
+    <template id="cpn">
+        <div>
+            <h2>{{cmessage}}</h2>
+           <p v-for="item in cmovies">
+               {{item}}
+           </p>
+        </div>
+    </template>
+
+
+    <script src="../js/vue.js"></script>
+    <script type="text/javascript">
+    //父传子:props
+    const cpn = {
+        template: '#cpn',
+        //props:['cmovies','cmessage'],
+        props:{
+            //1.类型限制
+            // cmovies: Array,
+            // cmessage: String,
+
+            //2.提供一些默认值
+            cmovies:{
+                type: Array,
+                default(){
+                    return []
+                }
+            },
+            cmessage: {
+                type: String,
+                default: 'aaaaaa',//默认值
+                required: true//布尔值,设置后该属性为必传
+            }
+
+
+        }
+    }
+
+    //root 组件
+            const app=new Vue({
+                el:"#app",
+                data:{
+                    message:'电影',
+                    movies: ['海王','海贼王','海尔兄弟'],
+                    data(){
+                        return {
+
+                        }
+                    }
+                },
+                components: {
+                    cpn
+                }
+            })
+    </script>
+</body>
+</html>

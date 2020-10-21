@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content=" ">
+    <title>Document</title>
+    <style type="text/css">
+        *{margin: 0;padding: 0;}
+        a{text-decoration: none;}
+        ul,li{list-style: none;}
+        body{font-size: 14px;font-family: "微软雅黑";}
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <h2>{{message}}</h2>
+        <cpn2></cpn2>
+        <cpn2></cpn2>
+        <cpn2></cpn2>
+    </div>
+
+
+    <script src="../js/vue.js"></script>
+    <script type="text/javascript">
+    //1.创建第一个组件构造器
+    const cpnC1=Vue.extend({
+        template:`
+        <div>
+        <h2>我是内容</h2>
+        <p>11111111</p>
+
+        <p>M222222222</p>
+        </div>`
+    })
+    //2.创建第二个组件构造器
+    //现在为父组件
+    const cpnC2=Vue.extend({
+        template:`
+        <div>
+        <h2>我是内容2</h2>
+        <p>221111111122</p>
+
+        <p>11M22222222211</p>
+        <cpn1></cpn1>
+        </div>`,
+        components:{
+            cpn1: cpnC1
+        }
+    })
+    //root 组件
+            const app=new Vue({
+                el:"#app",
+                data:{
+                    message:'aaa'
+                },
+                //(局部组件)
+                components: {
+                    cpn2: cpnC2,
+                }
+            })
+    </script>
+</body>
+</html>

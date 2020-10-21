@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content=" ">
+    <title>Document</title>
+    <style type="text/css">
+        *{margin: 0;padding: 0;}
+        a{text-decoration: none;}
+        ul,li{list-style: none;}
+        body{font-size: 14px;font-family: "微软雅黑";}
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <h2>当前技术{{counter}}</h2>
+<!--         <button @click="counter++">+</button>
+<button @click="counter">-</button> -->
+<button @click="add">+</button>
+<button @click="sub">-</button>
+    </div>
+
+    <script src="js/vue.js"></script>
+    <script type="text/javascript">
+    //1、拿button元素
+    //2、添加监听事件
+    const app=new Vue({
+        el:"#app",
+        data:{
+            counter:0,
+        },
+        methods:{
+            add:function(){
+                console.log('add被执行');
+                console.log("");
+                this.counter++;
+            },
+            sub:function(){
+                console.log('created');
+                console.log('mounted');
+                this.counter--;
+            }
+        }
+    })
+    //开发中什么时候称之为‘方法’，什么时候称之为‘函数’
+    //方法:method
+    //
+    //函数:function
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content=" ">
+    <title>Document</title>
+    <style type="text/css">
+        *{margin: 0;padding: 0;}
+        a{text-decoration: none;}
+        ul,li{list-style: none;}
+        body{font-size: 14px;font-family: "微软雅黑";}
+
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<!-- 跳过这个元素和它的子元素的编译过程。一些静态的内容不需要编辑加这个指令可以加快编辑 -->
+    <div id="app" v-cloak>
+        <h2>{{message}}</h2>
+        <h2 v-pre>{{message}}</h2>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script type="text/javascript">
+
+            setTimeout(function () {
+
+                const app=new Vue({
+                    el:"#app",
+                    data:{
+                        message:'aaa'
+                    }
+                })
+
+            },1000)
+    </script>
+</body>
+</html>

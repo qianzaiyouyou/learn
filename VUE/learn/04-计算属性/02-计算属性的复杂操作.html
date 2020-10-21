@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content=" ">
+    <title>Document</title>
+    <style type="text/css">
+        *{margin: 0;padding: 0;}
+        a{text-decoration: none;}
+        ul,li{list-style: none;}
+        body{font-size: 14px;font-family: "微软雅黑";}
+        .reds{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+
+        <ul>
+            <h2>总价格={{howMuch}}</h2>
+            <h2>总价格={{howMuch1}}</h2>
+        </ul>
+
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script type="text/javascript">
+            const app=new Vue({
+                el:"#app",
+                data:{
+                    allprice:0,
+                    allprice1:0,
+                    book:[
+                        {id:1,name:"111",price:50},
+                        {id:2,name:"222",price:66},
+                        {id:3,name:"333",price:44}
+                    ]
+                },
+
+                computed:{
+                    howMuch:function(){
+                       let books=this.book;
+                       for(let i=0;i<books.length;i++){
+                            this.allprice+=books[i].price;
+                       }
+                            return this.allprice;
+
+                    },
+
+                    howMuch1:function(){
+                        for(let books1 of this.book){
+                            this.allprice1+=books1.price;
+                        }
+                        return this.allprice1;
+
+                    }
+
+                }
+
+            })
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content=" ">
+    <title>Document</title>
+    <style type="text/css">
+        *{margin: 0;padding: 0;}
+        a{text-decoration: none;}
+        ul,li{list-style: none;}
+        body{font-size: 14px;font-family: "微软雅黑";}
+        .reds{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+
+        <ul>
+            <h2>{{fullName()}}</h2>
+            <h2>{{fullNames}}</h2>
+            </li>
+        </ul>
+
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script type="text/javascript">
+            const app=new Vue({
+                el:"#app",
+                data:{
+                    fristName: 'qaz123',
+                    lastName: 'wsx321',
+                },
+                computed:{
+                    fullNames:function(){
+                        return this.fristName+'    '+this.lastName;
+                    }
+                },
+                methods:{
+                    fullName:function(){
+                        return this.fristName+'    '+this.lastName;
+                    }
+                }
+
+            })
+    </script>
+</body>
+</html>

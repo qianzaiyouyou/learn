@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content=" ">
+    <title>Document</title>
+    <style type="text/css">
+        *{margin: 0;padding: 0;}
+        a{text-decoration: none;}
+        ul,li{list-style: none;}
+        body{font-size: 14px;font-family: "微软雅黑";}
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <h2>您选择的性别是 {{sex}}</h2>
+        <label for="male">
+            <input type="radio" id="male" name="sex" value="男" v-model="sex">男
+        </label>
+        <label for="fem">
+            <input type="radio" id="fem" name="sex" value="女" v-model="sex">女
+        </label>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script type="text/javascript">
+            const app=new Vue({
+                el:"#app",
+                data:{
+                    sex: ''
+                },
+                methods:{
+
+                }
+            })
+    </script>
+</body>
+</html>

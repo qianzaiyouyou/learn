@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content=" ">
+    <title>Document</title>
+    <style type="text/css">
+        *{margin: 0;padding: 0;}
+        a{text-decoration: none;}
+        ul,li{list-style: none;}
+        body{font-size: 14px;font-family: "微软雅黑";}
+    </style>
+</head>
+<body>
+
+    <div id="app">
+    <!-- 1.checkbox单选框 -->
+        <label for="agree">
+            <input type="checkbox" id="agree" v-model="disAgree">同意协议
+        </label>
+        <h2>是否同意协议{{disAgree}}</h2>
+        <button :disabled="!disAgree">同意</button>
+    <!-- 1.checkbox多选框 -->
+        <h2>您的爱好是{{hobbies}}</h2>
+            <input type="checkbox"  v-model="hobbies" value="篮球">篮球
+            <input type="checkbox"  v-model="hobbies" value="足球">足球
+            <input type="checkbox"  v-model="hobbies" value="乒乓球">乒乓球
+            <input type="checkbox"  v-model="hobbies" value="羽毛球">羽毛球
+
+        <button :disabled="!hobbies">同意</button>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script type="text/javascript">
+            const app=new Vue({
+                el:"#app",
+                data:{
+                    disAgree: false,//单选框
+                    hobbies:[]//多选框
+                },
+                methods:{
+
+                }
+            })
+    </script>
+</body>
+</html>

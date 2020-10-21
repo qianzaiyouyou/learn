@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content=" ">
+    <title>Document</title>
+    <style type="text/css">
+        *{margin: 0;padding: 0;}
+        a{text-decoration: none;}
+        ul,li{list-style: none;}
+        body{font-size: 14px;font-family: "微软雅黑";}
+        .reds{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+
+        <ul>
+            <li v-for="(item,index) in movies"  @click='indexs(index)' :id="index" :class="{reds: currebtIndex===index}">
+                {{index}}.{{item}}
+            </li>
+        </ul>
+
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script type="text/javascript">
+            const app=new Vue({
+                el:"#app",
+                data:{
+
+                    movies:['111','222','333','444'],
+                    colors:false,
+                    redss:"reds",
+                    currebtIndex:0,
+                },
+                methods:{
+
+                    indexs:function(indexs){
+                        this
+                        .currebtIndex=indexs;
+                        console.log(this);
+                        //for循环遍历
+                        // let sss=target.target.parentNode.children;
+                        // for(i=0;i<sss.length;i++){
+                        //     if(sss[i].className=="reds"){
+                        //         sss[i].className="";
+                        //     }
+                        // }
+                        // target.target.setAttribute("class","reds");
+
+                        //vue
+
+
+
+                    },
+
+                }
+
+            })
+    </script>
+</body>
+</html>

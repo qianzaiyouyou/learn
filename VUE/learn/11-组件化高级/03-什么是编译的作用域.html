@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content=" ">
+    <title>Document</title>
+    <style type="text/css">
+        *{margin: 0;padding: 0;}
+        a{text-decoration: none;}
+        ul,li{list-style: none;}
+        body{font-size: 14px;font-family: "微软雅黑";}
+    </style>
+</head>
+<body>
+
+
+    <!-- 父组件模板 -->
+    <div id="app">
+
+    <cpn v-show="isShow"></cpn>
+
+    </div>
+    <!-- 子组件模板 -->
+    <template id="cpn">
+         <div>
+            <h2>1111</h2>
+            <p>222</p>
+        </div>
+    </template>
+
+    <script src="../js/vue.js"></script>
+    <script type="text/javascript">
+
+    //root 组件
+            const app=new Vue({
+                el:"#app",
+                data:{
+                    message: "aaa",
+                    isShow:true
+                },
+                methods: {
+
+                },
+                components: {
+                    cpn: {
+                        template: "#cpn",
+                        data() {
+                            return {
+                                isShow:false
+                            }
+                        },
+                        methods: {
+
+                        },
+
+                    }
+                },
+
+            })
+    </script>
+</body>
+</html>

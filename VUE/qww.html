@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content=" ">
+    <title>Document</title>
+    <style type="text/css">
+        *{margin: 0;padding: 0;}
+        a{text-decoration: none;}
+        ul,li{list-style: none;}
+        body{font-size: 14px;font-family: "微软雅黑";}
+    </style>
+</head>
+<body>
+    <ul id="choose">
+
+        <li>
+            <input type="text" id="insert">
+            <button id="buttonInsert">添加选项</button>
+        </li>
+        <li><input type="checkbox" id="1111">111</li>
+        <li><input type="checkbox" id="2222">222</li>
+        <li><input type="checkbox" id="3333">333</li>
+    </ul>
+    <script type="text/javascript">
+        var ccc=document.getElementById("choose");
+        var aaa=ccc.children;
+        for(i=0;i<aaa.length;i++){
+            var bbb=aaa[i].firstChild;
+            console.log(bbb);
+        }
+        var button_Insert=document.getElementById("buttonInsert");
+        var insertCheckbox=document.getElementById("insert");
+        var textcontent=insertCheckbox.value;
+        button_Insert.onclick=function(){
+           var creatLi=document.createElement("li");
+            var creatInput=document.createElement("input");
+            creatLi.appendChild(creatInput);
+            ccc.appendChild(creatLi);
+            creatInput.setAttribute("type","checkbox");
+            creatInput.setAttribute("id",insertCheckbox.value);
+            creatLi.innerHTML+=insertCheckbox.value;
+        }
+    </script>
+</body>
+</html>

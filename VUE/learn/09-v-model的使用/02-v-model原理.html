@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content=" ">
+    <title>Document</title>
+    <style type="text/css">
+        *{margin: 0;padding: 0;}
+        a{text-decoration: none;}
+        ul,li{list-style: none;}
+        body{font-size: 14px;font-family: "微软雅黑";}
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <h2>{{message}}</h2>
+        <input type="text" v-model="message">
+        <input type="text" :value="message" v-on:input="valueChange($event)">
+        <input type="text" :value="message" @input="message = $event.target.value">
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script type="text/javascript">
+            const app=new Vue({
+                el:"#app",
+                data:{
+                    message:'aaa'
+                },
+                methods:{
+                    valueChange(event){
+                        this.message=event.target.value;
+                        console.log(event);
+                    }
+                }
+            })
+    </script>
+</body>
+</html>

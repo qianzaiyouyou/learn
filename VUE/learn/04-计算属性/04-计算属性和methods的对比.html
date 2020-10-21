@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content=" ">
+    <title>Document</title>
+    <style type="text/css">
+        *{margin: 0;padding: 0;}
+        a{text-decoration: none;}
+        ul,li{list-style: none;}
+        body{font-size: 14px;font-family: "微软雅黑";}
+        .reds{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+
+        <ul>
+            <!-- 1.直接拼接-->
+            <h2>{{fristName}}  {{lastName}}</h2>
+            <!-- 2.使用methods语法-->
+            <h2>{{getFullName()}}</h2>
+            <h2>{{getFullName()}}</h2>
+            <h2>{{getFullName()}}</h2>
+            <!--3.使用计算属性computed-->
+            <h2>{{fullNames}}</h2>
+            <h2>{{fullNames}}</h2>
+            <h2>{{fullNames}}</h2>
+        </ul>
+
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script type="text/javascript">
+            const app=new Vue({
+                el:"#app",
+                data:{
+                    fristName:'111',
+                    lastName:'222'
+                },
+                //计算属性, 有缓存,数据无更改则不重新调用,多次调用性能更好
+                computed:{
+
+                    fullNames: function(){
+                        console.log('fullNames');
+                        return this.fristName+'  '+this.lastName;
+                    }
+
+                },
+                //方法,无缓存，每次都需要调用
+                methods:{
+                    getFullName: function(){
+                        console.log('getFullName');
+                        return this.fristName+'  '+this.lastName;
+                    }
+                }
+
+            })
+    </script>
+</body>
+</html>

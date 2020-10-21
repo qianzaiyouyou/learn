@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content=" ">
+    <title>Document</title>
+    <style type="text/css">
+        *{margin: 0;padding: 0;}
+        a{text-decoration: none;}
+        ul,li{list-style: none;}
+        body{font-size: 14px;font-family: "微软雅黑";}
+    </style>
+</head>
+<body>
+
+    <div id="app">
+
+        <!-- <span>{{content}}</span> -->
+        <span v-if="isShow">
+            <label  for="1">{{phone}}</label>
+            <input type="text" :placeholder="content" id="1" value="" key="111">
+        </span>
+        <span v-else-if="isShow==false">
+             <label for="2">{{email}}</label>
+            <input type="text" :placeholder="content" id="2" value="" key="222">
+        </span>
+
+
+        <button @click="changeLogin()">切换类型</button>
+
+
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script type="text/javascript">
+            const app=new Vue({
+                el:"#app",
+                data:{
+                    score:0,
+                    isShow: true,
+                    content:"手机登录",
+                    phone:"手机登录",
+                    email:"邮箱登录",
+                    local:"本地账户登录",
+                },
+                computed:{
+
+                },
+                methods:{
+                    changeLogin(){
+
+                        this.isShow=!this.isShow;
+
+                        if(this.isShow){
+                            this.content=this.phone;
+                        }else if(this.isShow==false){
+                            this.content=this.email;
+                        }
+
+                    }
+                }
+
+            })
+    </script>
+</body>
+</html>
