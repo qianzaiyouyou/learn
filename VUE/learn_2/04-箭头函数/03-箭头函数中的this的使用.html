@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<script>
+    //什么时候使用箭头
+    // setTimeout(function (){
+    //     console.log(this);
+    // },1000)
+    // setTimeout(() =>{
+    //     console.log(this);
+    // },1000)
+
+    //箭头函数中的this是如何查找的
+    //答案: 向外层作用域中,一层层查找this,到有this的定义
+    // const obj = {
+    //     aaa() {
+    //         setTimeout(function (){
+    //             console.log(this);//window
+    //         })
+
+    //         setTimeout(() => {
+    //             console.log(this);//obj对象
+    //         })
+
+    //     }
+    // }
+    // obj.aaa();
+
+    const obj = {
+        aaa() {
+            setTimeout(function (){
+                setTimeout(function() {//function都是window
+                    console.log(this);//window
+                })
+                //this
+                setTimeout(() => {
+                //往上找找到funciton匿名函数直接指向了window
+                console.log(this);//window
+                })
+            })
+
+            setTimeout(() => {
+                setTimeout(function() {
+                    console.log(this);//window
+                })
+                //this
+
+                //往上找到，上级作用域是一个箭头函数，它又往上指aaa是一个obj对象
+                setTimeout(() => {
+                console.log(this);//obj对象
+                })
+            })
+
+        }
+    }
+    obj.aaa();
+    //function内的this会在运行时找最近的object对象将用call方法
+</script>
+
+</body>
+</html>
