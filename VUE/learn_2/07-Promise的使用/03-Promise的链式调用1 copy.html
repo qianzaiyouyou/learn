@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        //参数-> 函数
+        //resolve, reject 本身他们又是函数
+        new Promise((resolve, reject) => {
+            //模拟第一次网络请求的代码
+            setTimeout(() => {
+                resolve();
+            },1000)
+        }).then(() => {
+            //模拟第一次拿到结果的处理代码
+            console.log("Hello World");
+            console.log("Hello World");
+            console.log("Hello World");
+            console.log("Hello World");
+            console.log("Hello World"); 
+            console.log("Hello World");
+
+            return new Promise((resolve, reject) => {
+                //模拟第二次网络请求的代码
+                setTimeout(() => {
+                    resolve();
+                    
+                },1000)
+            }).then(() => {
+                //模拟第二次拿到结果的处理代码
+                console.log("Hello Vue");
+                console.log("Hello Vue");
+                console.log("Hello Vue");
+                console.log("Hello Vue");
+                console.log("Hello Vue");
+                console.log("Hello Vue");
+
+                return new Promise((resolve, reject) => {
+                    //模拟第三次网络请求的代码
+                    setTimeout(() => {
+                        resolve();
+                    
+                },1000)
+                }).then(() => {
+                    //模拟第三次拿到结果的处理代码
+                    console.log("Hello Html");
+                    console.log("Hello Html");
+                    console.log("Hello Html");
+                    console.log("Hello Html");
+                    console.log("Hello Html");
+                    console.log("Hello Html");
+                    
+                })
+            })
+        })
+    </script>
+</body>
+</html>

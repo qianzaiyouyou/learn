@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<script>
+    //1.使用setTimeout
+    // setTimeout(() => {
+    //     console.log("Hello World");
+    // },1000)
+
+
+
+    //参数-> 函数
+    //resolve, reject 本身他们又是函数
+    // new Promise((resolve, reject) => {
+    //     //模拟第一次网络请求的代码
+    //     setTimeout(() => {
+    //         resolve();
+    //     },1000)
+    // }).then(() => {
+    //     //模拟第一次拿到结果的处理代码
+    //     console.log("Hello World");
+    //     console.log("Hello World");
+    //     console.log("Hello World");
+    //     console.log("Hello World");
+    //     console.log("Hello World");
+    //     console.log("Hello World");
+
+    //     return new Promise((resolve, reject) => {
+    //         //模拟第二次网络请求的代码
+    //         setTimeout(() => {
+    //             resolve();
+                
+    //         },1000)
+    //     }).then(() => {
+    //         //模拟第二次拿到结果的处理代码
+    //         console.log("Hello Vue");
+    //         console.log("Hello Vue");
+    //         console.log("Hello Vue");
+    //         console.log("Hello Vue");
+    //         console.log("Hello Vue");
+    //         console.log("Hello Vue");
+
+    //         return new Promise((resolve, reject) => {
+    //             //模拟第三次网络请求的代码
+    //             setTimeout(() => {
+    //             resolve();
+                
+    //         },1000)
+    //         }).then(() => {
+    //             //模拟第三次拿到结果的处理代码
+    //             console.log("Hello Html");
+    //             console.log("Hello Html");
+    //             console.log("Hello Html");
+    //             console.log("Hello Html");
+    //             console.log("Hello Html");
+    //             console.log("Hello Html");
+                
+    //         })
+    //     })
+    // })
+
+
+
+    //什么情况下会用到Promise? 
+    //一般情况下是有异步操作时,使用Promise对这个异步操作进行封装
+    //new -> 构造函数(1.保存了一些状态信息 2. 执行传入的函数)
+    //在执行传入的函数时，会传入两个参数,resolve,reject本身又是函数
+    new Promise((resolve,reject) => {
+        setTimeout(() => {
+            //成功的时候调用resolve
+            //resolve("优雅~");
+
+            //失败的时候调用reject
+            reject("error message");
+        },1000)
+    }).then((data) => {
+        //100行的处理代码
+        console.log(data);
+    }).catch(err => {//箭头函数一个参数的时候括号可以省略
+        console.log(err);
+    })
+</script>
+</body>
+</html>
