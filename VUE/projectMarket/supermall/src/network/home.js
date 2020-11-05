@@ -6,3 +6,11 @@ export function getHomeMultdata() {
         url: '/home/multidata'
     })
 }
+
+
+export function getHomeGoods() {
+    return request({
+        url: '/home/data'
+    })
+}
+

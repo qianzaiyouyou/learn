@@ -137,7 +137,7 @@ import HomeFeatureView from './childComps/HomeFeatureView';
 import NavBar from "components/common/navbar/NavBar";
 import TabControl from "components/content/tabcontrol/TabControl";
 
-import {getHomeMultdata} from 'network/home';
+import {getHomeMultdata,getHomeGoods} from 'network/home';
 
 
 export default {
@@ -146,17 +146,22 @@ export default {
       return {
           result: null,
           banners: [],
-          recommends: []
+          recommends: [],
+          goods: {
+             'pop': {page: 0, list: []},
+             'news': {page: 0, list: []},
+             'sell': {page: 0, list: []},
+
+          }
       };
    },
    created() {
-      //1.请求多个数据
-      getHomeMultdata().then(res => {
-         console.log(res);
-         this.result = res;
-         this.banners = res.data.banner.list;
-         this.recommends = res.data.recommend.list;
-      })
+      
+      this.GetHomeMultdata();
+      this.getHomeGoods('pop');
+      this.getHomeGoods('news');
+      this.getHomeGoods('sell');
+
    },
    components: {
       NavBar,
@@ -168,7 +173,28 @@ export default {
 
    computed: {},
 
-   methods: {}
+   methods: {
+
+      GetHomeMultdata (){
+         //1.请求多个数据
+         getHomeMultdata().then(res => {
+            console.log(res);
+            this.result = res;
+            this.banners = res.data.banner.list;
+            this.recommends = res.data.recommend.list;
+         })
+      },
+      getHomeGoods(type) {
+         //2.请求商品数据
+         const page = this.goods[type].page + 1;
+         getHomeGoods(type, page).then(res => {
+            console.log(res);
+         })
+
+      }
+
+
+   }
 }
 </script>
 <style lang='css' scoped>
