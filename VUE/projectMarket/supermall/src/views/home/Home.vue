@@ -18,7 +18,7 @@
          <home-recommend-view :recommends="recommends"/>
          <home-feature-view/>
          <tab-control :titles="['流行','新款','精选']" class="tab-control"></tab-control>
-
+         <good-list :goods="goods['pop'].list"/>
       <ul>
       <li></li>
       <li></li>
@@ -136,6 +136,7 @@ import HomeFeatureView from './childComps/HomeFeatureView';
 
 import NavBar from "components/common/navbar/NavBar";
 import TabControl from "components/content/tabcontrol/TabControl";
+import GoodList from "components/content/goods/goodsList";
 
 import {getHomeMultdata,getHomeGoods} from 'network/home';
 
@@ -149,7 +150,7 @@ export default {
           recommends: [],
           goods: {
              'pop': {page: 0, list: []},
-             'news': {page: 0, list: []},
+             'new': {page: 0, list: []},
              'sell': {page: 0, list: []},
 
           }
@@ -157,9 +158,12 @@ export default {
    },
    created() {
       
+      //1.请求多个数据
       this.GetHomeMultdata();
+
+      //2.请求商品数据
       this.getHomeGoods('pop');
-      this.getHomeGoods('news');
+      this.getHomeGoods('new');
       this.getHomeGoods('sell');
 
    },
@@ -168,7 +172,8 @@ export default {
       HomeSwiper,
       HomeRecommendView,
       HomeFeatureView,
-      TabControl
+      TabControl,
+      GoodList
    },
 
    computed: {},
@@ -189,6 +194,9 @@ export default {
          const page = this.goods[type].page + 1;
          getHomeGoods(type, page).then(res => {
             console.log(res);
+            this.goods[type].list.push(...res.data.list);
+            this.goods[type].page += 1;
+            //console.log(this.goods);
          })
 
       }
