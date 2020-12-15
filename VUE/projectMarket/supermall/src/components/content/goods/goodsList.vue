@@ -61,5 +61,10 @@ activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
 </script>
 <style  scoped>
 /* @import url(); 引入公共css类 */
-
+    .goods{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        padding: 2px;
+    }
 </style>

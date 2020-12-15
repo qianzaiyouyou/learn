@@ -17,110 +17,12 @@
          <home-swiper :banners="banners"/>
          <home-recommend-view :recommends="recommends"/>
          <home-feature-view/>
-         <tab-control :titles="['流行','新款','精选']" class="tab-control"></tab-control>
-         <good-list :goods="goods['pop'].list"/>
-      <ul>
+         <tab-control :titles="['流行','新款','精选']" class="tab-control" @tabClick="tabClick"></tab-control>
+         <good-list :goods="showGoods"/>
+      <!-- <ul>
       <li></li>
       <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      </ul>
+      </ul> -->
 
 
 
@@ -152,8 +54,8 @@ export default {
              'pop': {page: 0, list: []},
              'new': {page: 0, list: []},
              'sell': {page: 0, list: []},
-
-          }
+          },
+          currentType: 'pop'
       };
    },
    created() {
@@ -176,11 +78,37 @@ export default {
       GoodList
    },
 
-   computed: {},
+   computed: {
+      showGoods() {
+         return this.goods[this.currentType].list;
+      }
+   },
 
    methods: {
+      /** 
+      * 时间监听相关的方法
+      */
 
-      GetHomeMultdata (){
+      tabClick(index) {
+         console.log(index);
+         switch(index){
+            case 0:
+               this.currentType = 'pop';
+               break;
+            case 1:
+               this.currentType = 'new';
+               break;
+            case 2:
+               this.currentType = 'sell';
+               break;
+         }
+      },
+
+
+      /** 
+      * 网络请求相关的方法
+      */
+      GetHomeMultdata () {
          //1.请求多个数据
          getHomeMultdata().then(res => {
             console.log(res);
@@ -199,7 +127,7 @@ export default {
             //console.log(this.goods);
          })
 
-      }
+      },
 
 
    }
@@ -242,5 +170,6 @@ export default {
     .tab-control{
        position: sticky;
        top: 44px;
+       z-index: 9;
     }
 </style>
