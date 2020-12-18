@@ -1,7 +1,7 @@
 <!--  -->
 <template>
 <div class="goods-item">
-    <img :src="goodsItem.show.img" alt="">
+    <img :src="goodsItem.show.img" alt="" @load="imageLoad">
     <div class="goods-info">
         <p>{{goodsItem.title}}</p>
         <span class="price">{{goodsItem.price}}</span>
@@ -39,7 +39,10 @@ computed: {},
 watch: {},
 //方法集合
 methods: {
-
+  //每张图片加载完成后更新better-scroll的视图高度
+  imageLoad() {
+    this.$bus.$emit('itemImageLoad');
+  }
 },
 //生命周期 - 创建完成（可以访问当前this实例）
 created() {
