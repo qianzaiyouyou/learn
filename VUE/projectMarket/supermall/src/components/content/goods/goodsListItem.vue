@@ -1,6 +1,6 @@
 <!--  -->
 <template>
-<div class="goods-item">
+<div class="goods-item" @click="itemClick">
     <img :src="goodsItem.show.img" alt="" @load="imageLoad">
     <div class="goods-info">
         <p>{{goodsItem.title}}</p>
@@ -42,7 +42,12 @@ methods: {
   //每张图片加载完成后更新better-scroll的视图高度
   imageLoad() {
     this.$bus.$emit('itemImageLoad');
+  },
+
+  itemClick() {
+    this.$router.push("/detail/" + this.goodsItem.iid);
   }
+
 },
 //生命周期 - 创建完成（可以访问当前this实例）
 created() {

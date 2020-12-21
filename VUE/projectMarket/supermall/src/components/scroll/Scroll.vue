@@ -16,6 +16,10 @@ export default {
         probeType: {
             type: Number,
             default: 0
+        },
+        pullUpLoad: {
+            type: Boolean,
+            default: false
         }
     },
     methods: {
@@ -23,7 +27,14 @@ export default {
             this.scroll.scrollTo( x, y, time);
         },
         refresh() {
+            //console.log("------");
             this.scroll && this.scroll.refresh();
+        },
+        finishPullUp() {
+            this.scroll && this.scroll.finishPullUp();
+        },
+        getScrollY() {
+            return this.scroll ? this.scroll.y : 0;
         }
     },
     date() {
@@ -42,12 +53,19 @@ export default {
         });
 
         //2.监听滚动的位置
-        this.scroll.on('scroll', (position) => {
-            // console.log(position);
-            this.$emit('scroll', position);
-        });
-
-        
+        // if (this.probeType =="2" || this.props =="3"){
+            this.scroll.on('scroll', (position) => {
+                // console.log(position);
+                this.$emit('scroll', position);
+            });
+        // }
+        //3.监听scroll滚到底部
+        if (this.pullUpLoad) {
+            this.scroll.on('pullingUp', () => {
+                console.log('底部');
+                this.$emit('pullingUp');
+            })
+        }
 
     },
 }
