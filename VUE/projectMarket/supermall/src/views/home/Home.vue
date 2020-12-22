@@ -162,7 +162,7 @@ export default {
       contentScroll(position) {
          //position实时监听BScoll的滚动位置
          //1.判断tabControl是否显示
-         console.log(position);
+         // console.log(position);
          this.isShowBackTop = (-position.y) > 1000;//取绝对值对比
 
          //2.决定tabControl是否吸顶(position: fixed)
