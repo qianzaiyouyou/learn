@@ -23,7 +23,7 @@ export default {
           iid: null,
           topImages: [],
           res: null,
-          goods: null
+          goods: {}
       };
    },
 
