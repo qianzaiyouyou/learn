@@ -8,12 +8,12 @@
        <div class="goods_prices">
            <div class="goods_newPrice">{{goods.newPrice}}</div>
            <div class="goods_oldPrice">{{goods.oldPrice}}</div>
-           <div class="goods_discount">{{goods.discount}}</div>
+           <div class="goods_discount" v-if="goods.discount">{{goods.discount}}</div>
        </div>
        <div class="goods_datas">
            <div class="goods_colums0">{{goods.columns[0]}}</div>
            <div class="goods_colums1">{{goods.columns[1]}}</div>
-           <div class="goods_colums2">{{goods.services[0].name}}</div>
+           <div class="goods_colums2">{{goods.services[goods.services.length-1].name}}</div>
        </div>
        <div class="goods_services">
             <div class="goods_services_childs">
@@ -30,8 +30,8 @@
            </div>
            <div class="goods_services_childs ">
                <div class="goods_services_right">
-                   <img :src="goods.services[3].icon" alt="">
-                    <div style="float: left;">{{goods.services[3].name}}</div>
+                   <img :src="goods.services[goods.services.length-1].icon" alt="">
+                    <div style="float: left;">{{goods.services[goods.services.length-1].name}}</div>
                 </div>
            </div>
        </div>
@@ -46,13 +46,13 @@ export default {
         goods:{
             type: Object,
             default() {
-                return {}
+                return {};
             }
         }
     },
    data () {
       return {
-
+          
       };
    },
 
@@ -62,7 +62,11 @@ export default {
 
    methods: {},
    mounted() {
-       console.log(Object.keys(this.goods));
+    //    console.log(Object.keys(this.goods));
+    //    console.log(this.goods.discount);
+   },
+   beforeDestroy() {
+       
    }
 }
 </script>
