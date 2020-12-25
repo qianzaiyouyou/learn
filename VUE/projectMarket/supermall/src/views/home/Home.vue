@@ -185,7 +185,7 @@ export default {
          //2.请求商品数据
          const page = this.goods[type].page + 1;
          getHomeGoods(type, page).then(res => {
-            console.log(res);
+            // console.log(res);
             //...语法，直接遍历push进goods对象里面的数组，省了for循环遍历
             this.goods[type].list.push(...res.data.list);
             this.goods[type].page += 1;

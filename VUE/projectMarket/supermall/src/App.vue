@@ -15,16 +15,30 @@ export default {
   name: 'App',
   components: {
       MainTabBar
-  }
+  },
+  computed: {
+    // accordingMainTabBar(){
+    //   if(!/^\/detail/.test($route.path)){
+    //     return false;
+    //   }
+    // }
+  },
 }
 </script>
 
 <style>
 body {
   margin: 0;
+  width: 100vw;
 }
 a{
 text-decoration:none;
 color:#333;
+}
+*{
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
 </style>

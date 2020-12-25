@@ -48,17 +48,17 @@ export default {
 
 
 <style lang='css' scoped>
-/* .home-nav {
-      background-color: #ff8e96;
-      color: white;
+ .home-nav {
+      background-color: #fff;
+      /* color: white; */
       /* 在使用原生浏览器滚动时，为了让导航不跟随一起滚动 */
       /* display: flex;
       position: fixed; 
       left: 0;
       right: 0;
       top: 0;
-      z-index: 1000; 
-   } */
+      z-index: 1000;  */
+   } 
       .top_imgs {
         width: 20px;
         height: 20px;
