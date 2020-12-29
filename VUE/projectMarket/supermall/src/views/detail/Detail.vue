@@ -6,6 +6,7 @@
          <detail-base-info :goods='goods'/>
          <detail-shop-info :ShopInfo='shop'/>
          <detail-goods-info :detailInfo='detailInfo'/>
+         <detail-param-info :GoodsParam='goodsparam'/>
      </scroll>
    </div>
 </template>
@@ -17,10 +18,12 @@ import DetailSwiper from './childComps/DetailSwiper';
 import DetailBaseInfo from './childComps/DetailBaseInfo';
 import DetailShopInfo from './childComps/DetailShopInfo';
 import DetailGoodsInfo from './childComps/DetailGoodsInfo';
+import DetailParamInfo from './childComps/DetailParamInfo';
 
 import Scroll from 'components/scroll/Scroll';
+import {debounce} from 'common/utils';
 
-import {getDetail,Goods,Shop} from 'network/detail';
+import {getDetail,Goods,Shop,GoodsParam} from 'network/detail';
 
 
 
@@ -34,7 +37,8 @@ export default {
           goods: {},
           shop: {},
           detailImgs:[],
-          detailInfo: {}
+          detailInfo: {},
+          goodsparam: {}
       };
    },
 
@@ -44,7 +48,8 @@ export default {
       DetailBaseInfo,
       DetailShopInfo,
       Scroll,
-      DetailGoodsInfo
+      DetailGoodsInfo,
+      DetailParamInfo
    },
 
    computed: {},
@@ -72,8 +77,35 @@ export default {
 
          //4.保存商品的详情数据
          this.detailInfo = data.detailInfo;
+
+         this.goodsparam = new GoodsParam(data.itemParams.info , data.itemParams.rule);
        })
-   }
+   },
+   mounted() {
+      //1.图片加载完成的事件监听
+      //有在下方对refresh的闭包引用所以refresh在使用完后不会被销毁
+      const refresh = debounce(this.$refs.scroll.refresh , 500);
+
+      //监听item中图片加载完成
+      //    解决better-scroll的bug不会随着图片加载自己更新高度的问题，
+      //    添加一个事件总线(即在mian.js中创建一个vue实例),
+      //    通过其在goodsListItem中每加载图片即发射一次imageLoad()事件在此接收
+      this.$bus.$on('itemImageLoad', () => {
+         refresh();
+         //this.$refs.scroll.refresh();
+      });
+   },
+   activated() {
+      console.log(this.saveY);
+      this.$refs.scroll.scrollTo(0, this.saveY, 0);
+      this.$refs.scroll.refresh();
+   },
+   deactivated() {
+      console.log(this.saveY);
+      this.saveY = this.$refs.scroll.getScrollY();
+      console.log(this.saveY);
+   },
+   
 
 }
 </script>

@@ -63,13 +63,15 @@ export default {
            }
        }
    },
-   mounted(){
-       console.log(this.ShopInfo);
-   }
+//    mounted(){
+//        console.log(this.ShopInfo);
+//    }
 }
 </script>
 <style lang='css' scoped>
-
+.ShopInfo{
+    border-bottom: 5px solid #f9f9fa;
+}
 .ShopInfo_title{
     margin: 8px;
     /* position: relative; */
