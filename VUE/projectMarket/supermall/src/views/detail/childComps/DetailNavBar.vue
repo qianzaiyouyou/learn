@@ -1,8 +1,8 @@
 <template>
    <div>
         <nav-bar class="home-nav">
-            <div slot="left">
-               <a href="" class="top_imgs">
+            <div slot="left" >
+               <a href="javascript:undefined" class="top_imgs" @click="backClick">
                   <img src="~assets/img/option/back.svg" alt="" class="top_imgs">
                </a>
             </div>
@@ -40,7 +40,13 @@ export default {
        titleColor(index) {
            this.currentIndex = index;
            console.log(index);
+       },
+       backClick(){
+           this.$router.back();
+        //    this.$router.go(-1);
+        // this.$router.forward();
        }
+
    }
 }
 </script>

@@ -84,25 +84,25 @@ export default {
    mounted() {
       //1.图片加载完成的事件监听
       //有在下方对refresh的闭包引用所以refresh在使用完后不会被销毁
-      const refresh = debounce(this.$refs.scroll.refresh , 500);
+      // const refresh = debounce(this.$refs.scroll.refresh , 500);
 
       //监听item中图片加载完成
       //    解决better-scroll的bug不会随着图片加载自己更新高度的问题，
       //    添加一个事件总线(即在mian.js中创建一个vue实例),
       //    通过其在goodsListItem中每加载图片即发射一次imageLoad()事件在此接收
-      this.$bus.$on('itemImageLoad', () => {
+      this.$bus.$on('itemImageLoadInfo', () => {
          refresh();
          //this.$refs.scroll.refresh();
       });
    },
    activated() {
       console.log(this.saveY);
-      this.$refs.scroll.scrollTo(0, this.saveY, 0);
-      this.$refs.scroll.refresh();
+      // this.$refs.scroll.scrollTo(0, this.saveY, 0);
+      // this.$refs.scroll.refresh();
    },
    deactivated() {
       console.log(this.saveY);
-      this.saveY = this.$refs.scroll.getScrollY();
+      // this.saveY = this.$refs.scroll.getScrollY();
       console.log(this.saveY);
    },
    

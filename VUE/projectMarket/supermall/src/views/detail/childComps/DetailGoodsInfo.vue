@@ -1,11 +1,11 @@
 <template>
    <div v-if="Object.keys(detailInfo).length !== 0" class="detail_goods_info">
        <div class="shop_introduce">
-           <div @click = 'sdfsdf' class="shop_introducetxt">{{detailInfo.desc}}</div>
+           <div class="shop_introducetxt">{{detailInfo.desc}}</div>
            <div class="shop_introducetxt">{{detailInfo.detailImage[0].key}}</div>
        </div>
        <div class="shop_introduceimg">
-           <div v-for ="(item,index) in this.detailInfo.detailImage[0].list " :key = "index" class="shop_introduceimgss">
+           <div v-for ="(item,index) in this.detailInfo.detailImage[0].list " :key = "index" class="shop_introduceimgss" @load="imageLoadInfo">
                <img :src="item" alt="">
            </div>
        </div>
@@ -36,8 +36,8 @@ export default {
    },
 
    methods: {
-       sdfsdf() {
-           console.log(this.detailInfo.detailImage[0]);
+       imageLoadInfo() {
+           this.$bus.$emit('itemImageLoadInfo');
        }
    },
 //    beforeDestroy(){

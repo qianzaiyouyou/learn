@@ -23,6 +23,7 @@ export default {
         }
     },
     methods: {
+        //页面移动位置
         scrollTo( x, y, time = 300){
             this.scroll.scrollTo( x, y, time);
         },
