@@ -1,13 +1,17 @@
 <template>
    <div id="detail">
      <detail-nav-bar class="detail_nav_bar"/>
-     <scroll class="content">
+     <!-- <scroll class="content"
+             ref="scroll"
+             :probe-type="3"
+             :pull-up-load='true'> -->
          <detail-swiper :top-images='topImages'/>
          <detail-base-info :goods='goods'/>
          <detail-shop-info :ShopInfo='shop'/>
          <detail-goods-info :detailInfo='detailInfo'/>
          <detail-param-info :GoodsParam='goodsparam'/>
-     </scroll>
+         <detail-comment-info :comment-info="commentInfo" />
+     <!-- </scroll> -->
    </div>
 </template>
 
@@ -19,6 +23,7 @@ import DetailBaseInfo from './childComps/DetailBaseInfo';
 import DetailShopInfo from './childComps/DetailShopInfo';
 import DetailGoodsInfo from './childComps/DetailGoodsInfo';
 import DetailParamInfo from './childComps/DetailParamInfo';
+import DetailCommentInfo from './childComps/DetailCommentInfo';
 
 import Scroll from 'components/scroll/Scroll';
 import {debounce} from 'common/utils';
@@ -38,7 +43,8 @@ export default {
           shop: {},
           detailImgs:[],
           detailInfo: {},
-          goodsparam: {}
+          goodsparam: {},
+          commentInfo: {}, //评论信息
       };
    },
 
@@ -49,7 +55,8 @@ export default {
       DetailShopInfo,
       Scroll,
       DetailGoodsInfo,
-      DetailParamInfo
+      DetailParamInfo,
+      DetailCommentInfo
    },
 
    computed: {},
@@ -78,13 +85,20 @@ export default {
          //4.保存商品的详情数据
          this.detailInfo = data.detailInfo;
 
+         //5.取出参数信息
          this.goodsparam = new GoodsParam(data.itemParams.info , data.itemParams.rule);
+
+         //6.取出评论信息
+         if (data.rate.cRate !== 0) {
+            this.commentInfo = data.rate.list[0]
+         }
+
        })
    },
    mounted() {
       //1.图片加载完成的事件监听
       //有在下方对refresh的闭包引用所以refresh在使用完后不会被销毁
-      // const refresh = debounce(this.$refs.scroll.refresh , 500);
+      const refresh = debounce(this.$refs.scroll.refresh , 500);
 
       //监听item中图片加载完成
       //    解决better-scroll的bug不会随着图片加载自己更新高度的问题，
@@ -92,13 +106,13 @@ export default {
       //    通过其在goodsListItem中每加载图片即发射一次imageLoad()事件在此接收
       this.$bus.$on('itemImageLoadInfo', () => {
          refresh();
-         //this.$refs.scroll.refresh();
+         // this.$refs.scroll.refresh();
       });
    },
    activated() {
       console.log(this.saveY);
       // this.$refs.scroll.scrollTo(0, this.saveY, 0);
-      // this.$refs.scroll.refresh();
+      this.$refs.scroll.refresh();
    },
    deactivated() {
       console.log(this.saveY);
@@ -118,6 +132,7 @@ export default {
 }
 .content{
    height: calc(100% - 44px);
+   background-color: #fff;
 }
 .detail_nav_bar{
    position: relative;

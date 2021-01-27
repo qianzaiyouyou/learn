@@ -56,6 +56,8 @@ export default {
 <style lang='css' scoped>
  .home-nav {
       background-color: #fff;
+      z-index: 9;
+      position: relative;
       /* color: white; */
       /* 在使用原生浏览器滚动时，为了让导航不跟随一起滚动 */
       /* display: flex;

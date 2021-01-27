@@ -9,7 +9,7 @@
        </table>
        <table class="table_down">
            <tr v-for="(tr , index) in GoodsParam.infos" :key = "index">
-               <td v-for="(td , indey , index) in tr" :key = "indey" :style="{ color : (index == 1)? '#ff8e96':''}" >
+               <td v-for="(td , indey , indez) in tr" :key = "indey" :style="{ color : (indez == 1)? '#ff8e96':''}" >
                    {{td}}
                </td>
            </tr>
