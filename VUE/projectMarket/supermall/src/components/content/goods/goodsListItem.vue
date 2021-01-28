@@ -1,7 +1,7 @@
 <!--  -->
 <template>
 <div class="goods-item" @click="itemClick">
-    <img :src="goodsItem.show.img" alt="" @load="imageLoad">
+    <img :src="showImage" alt="" @load="imageLoad">
     <div class="goods-info">
         <p>{{goodsItem.title}}</p>
         <span class="price">{{goodsItem.price}}</span>
@@ -34,7 +34,12 @@ props: {
 },
 
 //监听属性 类似于data概念
-computed: {},
+computed: {
+  //判断传入图片的节点
+  showImage () {
+    return this.goodsItem.image || this.goodsItem.show.img;
+  }
+},
 //监控data中的数据变化
 watch: {},
 //方法集合

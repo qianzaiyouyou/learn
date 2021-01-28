@@ -1,8 +1,8 @@
 <template>
    <div id="detail">
      <detail-nav-bar class="detail_nav_bar"/>
-     <!-- <scroll class="content"
-             ref="scroll"
+     <scroll class="content">
+             <!-- ref="scroll"
              :probe-type="3"
              :pull-up-load='true'> -->
          <detail-swiper :top-images='topImages'/>
@@ -10,8 +10,9 @@
          <detail-shop-info :ShopInfo='shop'/>
          <detail-goods-info :detailInfo='detailInfo'/>
          <detail-param-info :GoodsParam='goodsparam'/>
-         <detail-comment-info :comment-info="commentInfo" />
-     <!-- </scroll> -->
+         <detail-comment-info :comment-info="commentInfo"/>
+         <goods-list :goods='recommends'/>
+     </scroll>
    </div>
 </template>
 
@@ -26,9 +27,10 @@ import DetailParamInfo from './childComps/DetailParamInfo';
 import DetailCommentInfo from './childComps/DetailCommentInfo';
 
 import Scroll from 'components/scroll/Scroll';
-import {debounce} from 'common/utils';
+import GoodsList from 'components/content/goods/goodsList';
+// import {debounce} from 'common/utils';
 
-import {getDetail,Goods,Shop,GoodsParam} from 'network/detail';
+import {getDetail,Goods,Shop,GoodsParam,getRecommend} from 'network/detail';
 
 
 
@@ -45,6 +47,7 @@ export default {
           detailInfo: {},
           goodsparam: {},
           commentInfo: {}, //评论信息
+          recommends: [] //推荐信息
       };
    },
 
@@ -56,7 +59,8 @@ export default {
       Scroll,
       DetailGoodsInfo,
       DetailParamInfo,
-      DetailCommentInfo
+      DetailCommentInfo,
+      GoodsList
    },
 
    computed: {},
@@ -92,13 +96,18 @@ export default {
          if (data.rate.cRate !== 0) {
             this.commentInfo = data.rate.list[0]
          }
-
        })
+      
+      //3.请求推荐数据
+      getRecommend().then(res => {
+            console.log(res);
+            this.recommends = res.data.list;
+         })
    },
    mounted() {
       //1.图片加载完成的事件监听
       //有在下方对refresh的闭包引用所以refresh在使用完后不会被销毁
-      const refresh = debounce(this.$refs.scroll.refresh , 500);
+      // const refresh = debounce(this.$refs.scroll.refresh , 500);
 
       //监听item中图片加载完成
       //    解决better-scroll的bug不会随着图片加载自己更新高度的问题，

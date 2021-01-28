@@ -13,12 +13,16 @@
                {{commentInfo.content}}
            </div>
            <div class="commentInfos_content_user_nature">
-               <div></div>
-               <div></div>
-               <div></div>
+               <div class="commentInfos_content_user_nature_left">{{commentInfo.created | showDate}}</div>
+               <div class="commentInfos_content_user_nature_right">{{commentInfo.style}}</div>
            </div>
            <div class="commentInfos_content_user_img">
-               <img src="" alt="">
+               <div class="commentInfos_content_user_imgs" 
+                    v-for="(item,index) in commentInfo.images"
+                    :key="index"
+               >
+               <img :src="item" alt="">
+               </div>
            </div>
        </div>
 
@@ -26,6 +30,9 @@
 </template>
 
 <script>
+
+import {formatDate} from 'common/utils';
+
 export default {
     name: 'DetailCommentInfo',
     props: {
@@ -40,6 +47,14 @@ export default {
       return {
 
       };
+   },
+   filters: {
+       showDate(value) {
+           //1.将时间戳转成Date对象
+           const date = new Date (value * 1000);
+           //2.将date进行格式化
+           return formatDate(date , 'yyyy-MM-dd');
+       }
    },
 
    components: {},
@@ -91,5 +106,37 @@ export default {
     float: left;
     margin-left: 8px;
     /* line-height: 45px; */
+}
+.commentInfos_content .commentInfos_content_user_nature{
+    padding-top: 10px;
+    color: #ccc;
+    position: relative;
+    width: 100%;
+}
+.commentInfos_content .commentInfos_content_user_nature .commentInfos_content_user_nature_left{
+    float: left;
+}
+.commentInfos_content .commentInfos_content_user_nature .commentInfos_content_user_nature_right{
+    /* float: left; */
+    margin-left: 10px;
+}
+.commentInfos_content_user_img{
+    /* position: relative;
+    width: 100%; */
+    padding-top: 10px;
+    height: 60px;
+}
+.commentInfos_content_user_img .commentInfos_content_user_imgs{
+    float: left;
+    padding-left: 10px;
+}
+.commentInfos_content_user_img .commentInfos_content_user_imgs:nth-of-type(1){
+    float: left;
+    padding-left: 0px;
+}
+.commentInfos_content_user_img .commentInfos_content_user_imgs img{
+    width: 60px;
+    height: 60px;
+    border-radius: 2px;
 }
 </style>
